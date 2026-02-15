@@ -61,3 +61,12 @@ def add_expense(expense: Expense,
     db.add(database_models.Expense(**expense.model_dump()))
     db.commit()
     return {"message": "Expense added successfully"}
+
+@app.delete("/expenses/{id}")
+def delete_expense(id: int, db: Session = Depends(get_db)):
+    db_expense = db.query(database_models.Expense).filter(database_models.Expense.id == id).first()
+    if db_expense:
+        db.delete(db_expense)
+        db.commit()
+    else:
+        "Expense not Found"
