@@ -1,15 +1,16 @@
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Integer, String, Float
-from datetime import date
+from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
+from sqlalchemy import Integer, String, Float, Date
+from datetime import date as Datetype
 from typing import Optional
 
-Base = declarative_base()
+class Base(DeclarativeBase):
+    pass
 
 class Expense(Base):
     __tablename__ = "expenses"
 
-    id: Integer
-    title: String
-    amount: Float
-    date: date
-    category: Optional[str] = None
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    title: Mapped[str] = mapped_column(String)
+    amount: Mapped[float] = mapped_column(Float)
+    date: Mapped[Datetype] = mapped_column(Date)
+    category: Mapped[Optional[str]] = mapped_column(String(50), nullable=True)
