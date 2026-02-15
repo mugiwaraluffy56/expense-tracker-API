@@ -3,6 +3,7 @@ from database import SessionLocal, engine
 from sqlalchemy.orm import Session
 import database_models
 from datetime import date
+from models import Expense
 
 app = FastAPI()
 
@@ -55,7 +56,7 @@ def get_expense_by_category(category: str,
     return "Expense not Found"
 
 @app.post("/expenses")
-def add_expense(expense: database_models.Expense,
+def add_expense(expense: Expense,
                  db: Session = Depends(get_db)):
     db.add(database_models.Expense(**expense.model_dump()))
     db.commit()
