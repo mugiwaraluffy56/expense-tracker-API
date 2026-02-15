@@ -1,0 +1,20 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: postgres
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - "5433:5432"
+
+  expense:
+    build: .
+    container_name: expense-tracker
+    restart: always
+    depends_on:
+      - postgres
+    env_file:
+      - .env
+    ports:
+      - "8000:8000"
