@@ -31,7 +31,7 @@ def get_expenses(db: Session = Depends(get_db)):
         return db_expenses
     return "No expenses were Made"
 
-@app.get("/expenses/{id}")
+@app.get("/expenses/id/{id}")
 def get_expenses_by_id(id: int,
                         db: Session = Depends(get_db)):
     db_expense = db.query(database_models.Expense).filter(database_models.Expense.id == id).first()
@@ -39,7 +39,7 @@ def get_expenses_by_id(id: int,
         return db_expense
     return "Expense not Found"
 
-@app.get("/expenses/{date}")
+@app.get("/expenses/date/{date}")
 def get_expenses_by_date(date: date,
                           db: Session = Depends(get_db)):
     db_expense = db.query(database_models.Expense).filter(database_models.Expense.date == date).first()
@@ -47,7 +47,7 @@ def get_expenses_by_date(date: date,
         return db_expense
     return "Expense not Found"
 
-@app.get("/expenses/{category}")
+@app.get("/expenses/category/{category}")
 def get_expense_by_category(category: str,
                              db: Session = Depends(get_db)):
     db_expense = db.query(database_models.Expense).filter(database_models.Expense.category == category).first()
