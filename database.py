@@ -3,6 +3,6 @@ from sqlalchemy.orm import sessionmaker
 import os
 
 DATABASE_URL = os.getenv("DATABASE_URL")
-
-engine = create_engine(DATABASE_URL)
+DBurl = "postgresql://postgres:mohana123@localhost:5432/expenses"
+engine = create_engine(DBurl)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
