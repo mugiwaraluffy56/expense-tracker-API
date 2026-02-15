@@ -1,5 +1,4 @@
 from fastapi import FastAPI, Depends
-# from models import Expense
 from database import SessionLocal, engine
 from sqlalchemy.orm import Session
 import database_models
