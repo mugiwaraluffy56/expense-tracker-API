@@ -1,0 +1,10 @@
+from pydantic import BaseModel
+from typing import Optional
+from datetime import date
+
+class Expense(BaseModel):
+    id: int
+    title: str
+    amount: float
+    date: date
+    category: Optional[str] = None
