@@ -76,4 +76,3 @@ def delete_expense(id: int, db: Session = Depends(get_db)):
 def get_summary(db: Session = Depends(get_db)):
     total = db.query(func.sum(database_models.Expense.amount)).scalar() or 0
     return {"total expenses": total}
-
